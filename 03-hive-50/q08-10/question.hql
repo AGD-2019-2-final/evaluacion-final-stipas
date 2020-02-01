@@ -40,5 +40,17 @@ LOAD DATA LOCAL INPATH 'tbl1.csv' INTO TABLE tbl1;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
-
+-- para guardar la consulta se debe almacenar en un tabla
+DROP TABLE IF EXISTS salida;
+CREATE TABLE salida
+AS
+SELECT
+    c2,
+    SUM(value)
+FROM
+    tbl0
+LATERAL VIEW
+    explode(c6) tbl0
+GROUP BY 
+ c2;
 

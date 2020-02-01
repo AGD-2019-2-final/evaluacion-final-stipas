@@ -22,5 +22,17 @@ CREATE TABLE t0 (
 LOAD DATA LOCAL INPATH 'data.tsv' INTO TABLE t0;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
---
+-- para guardar la consulta se debe almacenar en un tabla
+DROP TABLE IF EXISTS salida;
+CREATE TABLE salida
+AS
+SELECT
+    concat(key,',',
+    count(1))
+FROM
+    t0
+LATERAL VIEW
+    explode(c3) t0
+GROUP BY 
+ key;
 

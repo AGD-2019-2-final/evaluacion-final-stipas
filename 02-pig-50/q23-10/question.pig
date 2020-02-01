@@ -18,14 +18,11 @@
 -- 
 fs -rm -f -r output;
 -- 
-u = LOAD 'data.csv' USING PigStorage(',') 
-    AS (id:int, 
-        firstname:CHARARRAY, 
-        surname:CHARARRAY, 
-        birthday:CHARARRAY, 
-        color:CHARARRAY, 
-        quantity:INT);
---
--- >>> Escriba su respuesta a partir de este punto <<<
---
+u = LOAD 'data.csv' USING PigStorage(',')
+    AS (f1:INT, f2:CHARARRAY, f3:CHARARRAY, f4:CHARARRAY, f5:CHARARRAY);
+    
+y = FILTER u BY (f5 matches '.*[aeiou]$.*');
 
+b = FOREACH y GENERATE CONCAT(f2, ',' , f5);
+
+STORE b INTO './output' using PigStorage('\t');

@@ -22,5 +22,14 @@ LOAD DATA LOCAL INPATH 'data.tsv' INTO TABLE t0;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
-
+-- para guardar la consulta se debe almacenar en un tabla
+DROP TABLE IF EXISTS salida;
+CREATE TABLE salida
+AS
+SELECT
+    concat(c1,',',
+    size(c2),',',
+    size(c3))
+FROM
+    t0;
 

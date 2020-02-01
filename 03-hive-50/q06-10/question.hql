@@ -38,6 +38,13 @@ LINES TERMINATED BY '\n';
 LOAD DATA LOCAL INPATH 'tbl1.csv' INTO TABLE tbl1;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
---
+-- para guardar la consulta se debe almacenar en un tabla
+DROP TABLE IF EXISTS salida;
+CREATE TABLE salida
+AS
+SELECT
+     UPPER(concat_ws(':', c5))
+FROM
+     tbl0;
 
 

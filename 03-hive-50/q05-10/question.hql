@@ -38,5 +38,23 @@ LINES TERMINATED BY '\n';
 LOAD DATA LOCAL INPATH 'tbl1.csv' INTO TABLE tbl1;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
---
+-- para guardar la consulta se debe almacenar en un tabla
+DROP TABLE IF EXISTS salida;
+CREATE TABLE salida
+AS
+SELECT 
+    year,
+    letra,
+    count(1) 
+FROM (
+SELECT
+       YEAR(c4) AS year,
+       c0 AS letra
+FROM
+        tbl0  
+LATERAL VIEW
+        explode(c5) tbl0 AS c0
+)tabla
+GROUP BY 
+    year, letra;
 

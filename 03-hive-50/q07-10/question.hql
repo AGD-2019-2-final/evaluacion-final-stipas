@@ -39,5 +39,15 @@ LOAD DATA LOCAL INPATH 'tbl1.csv' INTO TABLE tbl1;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
-
+-- para guardar la consulta se debe almacenar en un tabla
+DROP TABLE IF EXISTS salida;
+CREATE TABLE salida
+AS
+SELECT
+    concat(c2,',',
+    concat_ws(':',collect_set(cast(c1 AS string))))
+FROM
+    tbl0
+GROUP BY
+    c2;
 
